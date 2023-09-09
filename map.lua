@@ -1,10 +1,10 @@
 MAP_WIDTH = 3920 -- Largura do mapa
 MAP_HEIGHT = 3500 -- Altura do mapa
-MAP_START_X = -500 -- Largura máxima para a câmera e o personagem alcançar. < 0 permite ir mais para a esquerda.
-MAP_START_Y = -500 -- Altura máxima para a câmera e o personagem alcançar. < 0 permite ir mais para cima.
+MAP_START_X = 0 -- Largura máxima para a câmera e o personagem alcançar. < 0 permite ir mais para a esquerda.
+MAP_START_Y = 0 -- Altura máxima para a câmera e o personagem alcançar. < 0 permite ir mais para cima.
 
 function initMap()
-    background = love.graphics.newImage("assets/images/background_teste.png")
+    background = love.graphics.newImage("assets/images/bg_lowq.png")
 end
 
 function drawMap()

@@ -1,15 +1,23 @@
+-- Variáveis para rastrear a posição anterior do personagem
+local previousX, previousY
+
 -- Inicializar objetos no mapa
 function initObject()
     objects = {
+        -- {
+        --     image = love.graphics.newImage("assets/objects/rock.png"),
+        --     x = 940,
+        --     y = 350
+        -- },
+        -- {
+        --     image = love.graphics.newImage("assets/objects/rock.png"),
+        --     x = 800,
+        --     y = 450
+        -- },
         {
-            image = love.graphics.newImage("assets/objects/rock.png"),
-            x = 940,
-            y = 350
-        },
-        {
-            image = love.graphics.newImage("assets/objects/rock.png"),
-            x = 800,
-            y = 450
+            image = love.graphics.newImage("assets/objects/wall/wall_622x22.png"),
+            x = 1622,
+            y = 504
         }
     }
 end
@@ -32,31 +40,29 @@ end
 
 -- Atualizar status de movimento do personagem após colidir/deixar de colidir com um objeto
 function charCollision(dt)
-    nextX = character.x + dx * dt
-    nextY = character.y + dy * dt
+    local nextX = character.x + dx * dt
+    local nextY = character.y + dy * dt
 
+    -- Verifica se há colisão com qualquer objeto
     local collisionDetected = false
 
     for _, obj in ipairs(objects) do
         if checkCollision(nextX, nextY, obj.x, obj.y, obj.image:getWidth(), obj.image:getHeight()) then
             collisionDetected = true
-            break -- Sai do loop assim que uma colisão for encontrada
+            break
         end
     end
-    
-    -- Velocidade com base na colisão
+
+    -- Define a velocidade com base na colisão
     if collisionDetected then
         character.speed = 0
-        -- Gambiarra
-        character.x = nextX - 3
-        character.y = nextY - 3
-    end
-
-    -- Atualiza a posição do personagem se não estiver em uma colisão
-    if not collisionDetected then
-        character.x = nextX
-        character.y = nextY
+        -- Reverte a posição do personagem para a posição anterior
+        character.x = previousX
+        character.y = previousY
+    else
         character.speed = 200
+        -- Atualiza a posição anterior do personagem
+        previousX = character.x
+        previousY = character.y
     end
-
 end

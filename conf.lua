@@ -1,5 +1,5 @@
 function love.conf(t)
-    t.window.title = "My Isometric Game"   -- Título do jogo
+    t.window.title = "My Game"   -- Título do jogo
     t.version = "11.4"            -- Versão do LÖVE compatível
     t.window.width = 800         -- Largura da janela do jogo
     t.window.height = 600        -- Altura da janela do jogo
